@@ -6,7 +6,7 @@ SERVER_PORT=3306 #port for check
 dotpoint="." #Element to draw
 timend=$((SECONDS+$timeoutch)) #time for end check connection
 
-echo -e "Hello User, now you need to wait $timeoutch sec\n"
+echo -e "Hello $USER, now you need to wait $timeoutch sec\n"
 echo -e "Waiting for connecting to server\c"
 
 	while [ $SECONDS -lt $timend ]

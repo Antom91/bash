@@ -1,22 +1,27 @@
 #!/bin/bash
 
 #Variables
-dotpoint="." #Element to drow
-timedrow=11
+timeoutch=10 #timeout to check connections
+SERVER_PORT=3306 #port for check
+dotpoint="." #Element to draw
+timend=$((SECONDS+$timeoutch)) #time for end check connection
 
+echo -e "Hello User, now you need to wait $timeoutch sec\n"
+echo -e "Waiting for connecting to server\c"
 
-echo -e "Hello User, now you need to wait 10 sec\n \n"
-echo -n "Waiting for connecting to server"
+	while [ $SECONDS -lt $timend ]
+		do
+			echo -n "$dotpoint"
 
-#cicle is begin!
+result=$(netstat -ano | grep $SERVER_PORT | grep -o on) #command to check if mysql have activity
 
-	for (( count=1; count<$timedrow; count++ ))
-	do
-	sleep 1 #sleep 1 sec to draw the  dot
-	echo -n "$dotpoint"
+	if [ $result ]
+		then
+			echo -e "\nWe have Activity on server\n"
+			exit 0
+	fi
+
 	done
 
-
-	if [ $count  = $timedrow ]; then
-	echo -e "\n\nOOPS, Server Is Down :)"
-	fi
+! true #If not connection
+echo -e "\nWe dont have Activity on  this server. Error Code = $? \n"

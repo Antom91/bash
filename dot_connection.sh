@@ -1,8 +1,9 @@
 #!/bin/bash
 
 #Variables
-timeoutch=10 #timeout to check connections
-SERVER_PORT=3306 #port for check
+timeoutch=10 #Timeout to check connections
+SERVER_ADDR=127.0.0.1 # Adress for check
+SERVER_PORT=80 #Port for check
 dotpoint="." #Element to draw
 timend=$((SECONDS+$timeoutch)) #time for end check connection
 
@@ -11,17 +12,22 @@ echo -e "Waiting for connecting to server\c"
 
 	while [ $SECONDS -lt $timend ]
 		do
-			echo -n "$dotpoint"
+		echo -n "$dotpoint"
 
-result=$(netstat -ano | grep $SERVER_PORT | grep -o on) #command to check if mysql have activity
+	result=$(nc -zv $SERVER_ADDR $SERVER_PORT -w 1 2>&1 | grep -oh succeeded)
 
-	if [ $result ]
-		then
-			echo -e "\nWe have Activity on server\n"
+
+		if [[ $result == "succeeded" ]]
+			then
+			echo -e "\nThe port is active!\n"
 			exit 0
-	fi
+		else
+			sleep 1
+		fi
 
 	done
 
-! true #If not connection
-echo -e "\nWe dont have Activity on  this server. Error Code = $? \n"
+               ! true #If not connection
+                echo -e "\nThe Port is Not Active. Error Code = $? \n"
+                exit 1
+

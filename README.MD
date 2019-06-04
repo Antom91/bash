@@ -12,4 +12,5 @@ Examples to can run:
   - `SERVER_ADDR=google.com ./ico_connection.sh`
   - `SERVER_PORT=80 ./ico_connection.sh`
   - `./ico_connection.sh`
+
 If you execute this script like this: `#./ico_connection.sh`, that will check port 80 on 127.0.0.1 IP

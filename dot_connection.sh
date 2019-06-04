@@ -5,16 +5,8 @@ timeoutch=10 #Timeout to check connections
 dotpoint="." #Element to draw
 timend=$((SECONDS+$timeoutch)) #time for end check connection
 
-
-	if [ -z $SERVER_ADDR ]
-                then
-                SERVER_ADDR=127.0.0.1 #Adress for check
-        fi
-
-        if [ -z $SERVER_PORT ]
-                then
-                SERVER_PORT=80 #Port for check
-        fi
+SERVER_ADDR=${SERVER_ADDR:-127.0.0.1}
+SERVER_PORT=${SERVER_PORT:-80}
 
 #Function of check port
 checkp ()

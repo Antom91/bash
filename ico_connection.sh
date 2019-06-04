@@ -11,17 +11,8 @@ timend=$((SECONDS+$timeoutch)) #time for end check connection
 icons='\-/|'
 n=1 #number of position icon
 
-
-	if [ -z $SERVER_ADDR ]
-		then
-		SERVER_ADDR=127.0.0.1 #Adress for check
-	fi
-
-	if [ -z $SERVER_PORT ]
-		then
-		SERVER_PORT=80 #Port for check
-	fi
-
+SERVER_ADDR=${SERVER_ADDR:-127.0.0.1}
+SERVER_PORT=${SERVER_PORT:-80}
 
 #Function of check port
 checkp ()

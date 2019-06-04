@@ -5,7 +5,8 @@ This script based on netcat software.
 
 You can setup variables:
   - timeoutch=10 #Timeout to check connections
-  - timeofico=0.2 #Time of icon symbols change
+  - timeofico=0.2 #Time of icon symbols change (only in ico_connection.sh)
+  - dotpoint="." #Element to draw (only in dot_connection.sh)
  
 Examples to can run:
   - `SERVER_ADDR=google.com SERVER_PORT=80 ./ico_connection.sh`

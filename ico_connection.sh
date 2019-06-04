@@ -3,7 +3,7 @@
 #Variables
 timeoutch=10 #Timeout to check connections
 SERVER_ADDR=127.0.0.1 # Adress for check
-SERVER_PORT=80 #Port for check
+SERVER_PORT=81 #Port for check
 dotpoint="." #Element to draw
 timeofico=0.2 #Time of icon symbols change
 
@@ -41,8 +41,9 @@ echo -e "Waiting for connecting to server \c"
 		fi
 
 	done
-
-               ! true #If not connection
-                echo -e "\nThe Port is Not Active. Error Code = $? \n"
-                exit 1
+		if [ $sta -ne 0 ]
+			then
+                	echo -e "\nThe Port is Not Active. Error Code = $sta \n"
+                	exit 1
+		fi
 
